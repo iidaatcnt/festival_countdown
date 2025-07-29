@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リベシティお金の勉強フェス2025 カウントダウン</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .title {
+            color: #4a5568;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #667eea;
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .time-unit {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 20px 10px;
+            border-radius: 20px;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+            transform: perspective(1000px) rotateX(10deg);
+            transition: transform 0.3s ease;
+        }
+        
+        .time-unit:hover {
+            transform: perspective(1000px) rotateX(0deg) scale(1.05);
+        }
+        
+        .time-number {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .time-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .heart-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 181, 160, 0.3);
+            position: relative;
+        }
+        
+        .heart-container {
+            position: relative;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120px;
+        }
+        
+        .heart {
+            color: #e17055;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 5px 15px rgba(225, 112, 85, 0.4));
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .heart:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 8px 25px rgba(225, 112, 85, 0.6));
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: #e17055;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 10;
+            animation: floatUp 2s ease-out forwards;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5) translateY(-30px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2) translateY(-60px);
+                opacity: 0;
+            }
+        }
+        
+        .like-button {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(232, 67, 147, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .like-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(232, 67, 147, 0.4);
+        }
+        
+        .like-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .like-count {
+            color: #2d3436;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+        
+        .unique-count {
+            color: #636e72;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+        
+        .quote-section {
+            background: linear-gradient(135deg, #a8e6cf, #81c784);
+            padding: 25px;
+            border-radius: 20px;
+            margin-top: 30px;
+            color: #2e7d32;
+            box-shadow: 0 10px 25px rgba(129, 199, 132, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quote-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(129, 199, 132, 0.4);
+        }
+        
+        .quote-author {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1b5e20;
+        }
+        
+        .quote-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 10px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .quote-refresh {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float-particles 15s infinite linear;
+        }
+        
+        @keyframes float-particles {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .countdown {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .time-number {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="particles"></div>
+    
+    <div class="container">
+        <h1 class="title">リベシティ</h1>
+        <h2 class="subtitle">お金の勉強フェス 2025</h2>
+        
+        <div class="countdown" id="countdown">
+            <div class="time-unit">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">日</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">時間</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">分</span>
+            </div>
+            <div class="time-unit">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">秒</span>
+            </div>
+        </div>
+        
+        <div class="heart-section">
+            <div class="heart-container">
+                <div class="heart" id="heart">❤️</div>
+            </div>
+            <button class="like-button" id="likeButton">いいね！</button>
+            <div class="like-count" id="likeCount">今日のいいね: 0</div>
+            <div class="unique-count" id="uniqueCount">ユニークいいね: 0</div>
+        </div>
+        
+        <div class="quote-section" id="quoteSection" onclick="showNewQuote()">
+            <div class="quote-author">グレン氏の名言</div>
+            <div class="quote-text" id="quoteText"></div>
+            <div class="quote-refresh">💡 クリックで新しい名言を表示</div>
+        </div>
+    </div>
+
+    <script>
+        // メモリ内での状態管理（localStorage の代替）
+        let appState = {
+            likeCount: 0,
+            uniqueCount: 0,
+            hasLiked: false,
+            lastResetDate: new Date().toDateString()
+        };
+
+        // グレン氏の名言集
+        const glenQuotes = [
+            "サバイバルに集中している間はビジネスに手がつかない。まずは生活の基礎を固めることが重要です。",
+            "まず買い手を見つけないといけない。多くの人が商品を作ってから売る相手を探して大間違いを犯す。",
+            "本当に取るに足らない仕事などありません。どんな仕事にも真剣に向き合えば自信が生まれます。その自信がさらに自分を押し上げてくれるんです。",
+            "誰かのゴミは誰かのお宝。",
+            "ビジネスでは時に勝負に負けて戦に勝つことが必要です。",
+            "成功に導くにはチームがあなたのビジョンをあなたと同じくらい信じること。賢いメンバーに周りを固めてもらうことが成功には不可欠です。",
+            "年を取れば人間は保守的になる。人生をやり直すなんて考えない。でも私はクソくらいゼロからスタートだと思ったわけだ。",
+            "軌道修正に備えよ。すべての仕事が計画通り行くわけではありません。優れたビジネスマンは急な変更や失敗に対する心構えを常に持っています。",
+            "グループで同じ目標を共有できたことが大切です。それぞれが自分の役割を果たすことで見返りは後からやってきます。",
+            "お膳立ては自分でつくる。絶好のチャンスが訪れるのを待っていてはダメです。そんなの絶対に来ない。",
+            "ノーという答えはあくまでスタート。ビジネスに成功するまでにはイエスという言葉以上にnoという返事をきかされるもの。",
+            "私のポリシーは第一に自分よりできる人材を探すこと。",
+            "トラブルが起きても動揺しないこと。プレッシャーの中で冷静さを保つ力はプロには欠かせません。",
+            "黙って耳を傾けろ。耳をかっぽじってプロの言うことを聞くんです。その言葉は成功するための助言となるんですからね。",
+            "商売敵を仲間にする。時にはライバルと協力することで、互いに利益を上げる方法を考えるべきです。",
+            "12時間先のことを逆算して考えなきゃならない。",
+            "誰よりも痛みに耐えよう。私が成功できた理由は辛い時に努力を怠らなかったから。ライバルより多く痛み耐えました。諦めなかったんです。",
+            "天気は言い訳になりません。言い訳していたら絶対ゴールには届きません。",
+            "元手がなくとも、誰もが自分の力で成功できると証明するのが目的。成功には大金やコネは必要なく、努力とチャンスさえあれば誰にでも可能です。",
+            "独立したということは自分から積極的に動かなきゃならないリーダーになるんだ。誰かの後についていくだけじゃダメなんだ。君が自分でやるんだ。",
+            "ビジネスは厳しい弱肉強食の世界だ。自分自身で戦い抜いて道を切り開いていくんだ。",
+            "諦めない。",
+            "金を賢く使わなきゃならない。",
+            "市場のニーズをいち早く見極めて、猛スピードで会社を育てなければならない。",
+            "的を絞ってコンパクトにまとめることが大事。無駄をそぎ落とす、余計な情報を取り除き、自分の求めている事柄を明確にする。",
+            "リーダーは積極的じゃなきゃダメ。",
+            "品質管理が肝だ。全国どこで飲んでも同じ味が出なきゃならない。",
+            "創業者は自分を不要にすべき。事業が拡大したら、有能な人材を雇い、実務を任せるべきです。",
+            "サメのように泳げ。サメは常に動いてる、寝てる時もね。成功する企業は生き延びるために動いて成長します。そして襲ってくる競合他社を跳ねのけるんです。"
+        ];
+
+        // ランダムな名言を表示
+        function showNewQuote() {
+            const randomIndex = Math.floor(Math.random() * glenQuotes.length);
+            const quoteElement = document.getElementById('quoteText');
+            
+            // フェードアウト
+            quoteElement.style.opacity = '0';
+            
+            setTimeout(() => {
+                quoteElement.textContent = glenQuotes[randomIndex];
+                // フェードイン
+                quoteElement.style.opacity = '1';
+            }, 200);
+        }
+
+        // カウントダウン機能
+        function updateCountdown() {
+            const targetDate = new Date('2025-08-09T09:00:00+09:00');
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('countdown').innerHTML = '<div style="font-size: 2rem; color: #e17055; font-weight: 900;">🎉 フェス開催中！ 🎉</div>';
+            }
+        }
+
+        // 日付チェックとリセット
+        function checkAndResetDaily() {
+            const today = new Date().toDateString();
+            if (appState.lastResetDate !== today) {
+                appState.likeCount = 0;
+                appState.uniqueCount = 0;
+                appState.hasLiked = false;
+                appState.lastResetDate = today;
+                updateHeartSize(0);
+                updateLikeDisplay();
+            }
+        }
+
+        // ハートサイズ更新
+        function updateHeartSize(count) {
+            const heart = document.getElementById('heart');
+            const baseSize = 3; // 基本サイズ（rem）
+            const size = Math.min(baseSize + (count * 0.1), 8); // 最大8rem
+            heart.style.fontSize = `${size}rem`;
+        }
+
+        // 表示更新
+        function updateLikeDisplay() {
+            document.getElementById('likeCount').textContent = `今日のいいね: ${appState.likeCount}`;
+            document.getElementById('uniqueCount').textContent = `ユニークいいね: ${appState.uniqueCount}`;
+        }
+
+        // フローティングハートアニメーション
+        function createFloatingHeart(x, y) {
+            const floatingHeart = document.createElement('div');
+            floatingHeart.className = 'floating-heart';
+            floatingHeart.textContent = '❤️';
+            floatingHeart.style.left = x + 'px';
+            floatingHeart.style.top = y + 'px';
+            
+            document.querySelector('.heart-section').appendChild(floatingHeart);
+            
+            // アニメーション完了後に要素を削除
+            setTimeout(() => {
+                floatingHeart.remove();
+            }, 2000);
+        }
+
+        // いいね機能
+        function addLike(event) {
+            // 日付チェック
+            checkAndResetDaily();
+            
+            // 総いいね数を増加
+            appState.likeCount++;
+            
+            // 初回いいねの場合のみユニークカウントとハートサイズを更新
+            if (!appState.hasLiked) {
+                appState.uniqueCount++;
+                appState.hasLiked = true;
+                updateHeartSize(appState.uniqueCount);
+            }
+            
+            updateLikeDisplay();
+            
+            // フローティングハートアニメーション
+            const rect = event.target.getBoundingClientRect();
+            const x = rect.left + rect.width / 2 - 16; // ハートの幅の半分を引く
+            const y = rect.top - 20;
+            createFloatingHeart(x, y);
+            
+            // ハートの鼓動アニメーション
+            const heart = document.getElementById('heart');
+            heart.style.animation = 'none';
+            heart.offsetHeight; // リフロー
+            heart.style.animation = 'heartbeat 0.6s ease-in-out';
+        }
+
+        // 星を生成
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // パーティクル生成
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 15000);
+            }, 500);
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // 日次リセットチェック（1分ごと）
+            setInterval(checkAndResetDaily, 60000);
+            
+            updateLikeDisplay();
+            document.getElementById('likeButton').addEventListener('click', addLike);
+            
+            // 初回の名言を表示
+            showNewQuote();
+            
+            createStars();
+            createParticles();
+        });
+    </script>
+</body>
+</html>
